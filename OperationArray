@@ -1,0 +1,385 @@
+public class ArrayStatic {
+
+    public static void main(String[] args) {
+        
+        
+        
+        
+        Operation obj=new Operation(10);
+        
+        obj.addFirst(10);
+        obj.addFirst(12);
+        obj.addFirst(1);
+        obj.addFirst(19);
+        
+        obj.addIndex(1, 12);
+        obj.addLast(123);
+        obj.decendingShorting();
+        obj.getMaximum();
+        obj.getMinimum();
+        obj.removeFirst();
+        obj.removeIndex(2);
+        obj.updateFirst(12);
+        obj.viewFirst();
+        obj.viewLast();
+        obj.getPrint();
+        
+  
+       
+    } 
+}
+
+
+===================================================================================
+
+public class Operation {
+    int size;
+    int []data;
+    int currentposition=-1;
+    
+    public Operation(int size){
+        this.size=size;
+        data=new int[size];
+       
+    }
+    
+    public boolean addFirst(int value){
+        
+        if(currentposition<data.length){
+            currentposition++;
+            for(int i=currentposition; i>0;i--){
+                data[i]=data[i-1];
+            }
+            data[0]=value;
+        }
+        else{
+            System.out.println("Array is Full ");
+        }
+        
+      
+      return true;  
+    }
+    
+    public boolean addLast(int value){
+        
+        if(currentposition<data.length){
+            currentposition++;
+           
+            data[currentposition]=value;
+        }
+        else{
+            System.out.println("Array is Full ");
+        }
+     
+      return true;  
+    }
+     
+    public boolean addIndex(int index ,int value){
+        
+        if(currentposition<data.length && index>=0 && index<currentposition){
+            currentposition++;
+            for(int i=currentposition; i>=index;i--){
+                data[i]=data[i-1];
+            }
+            data[index]=value;
+        }
+        else{
+            System.out.println("Array is Full ");
+        }
+        
+      
+      return true;  
+    }
+      
+    public boolean removeFirst(){
+        
+      if(currentposition>=0){
+          for(int i=0;i<currentposition;i++){
+              data[i]=data[i+1];
+          }
+          currentposition--;
+      }
+        else{
+            System.out.println("Array is Full ");
+        }
+        
+      
+      return true;  
+    }
+    
+    public boolean removeLast(){
+        
+      if(currentposition>=0){
+          
+          currentposition--;
+      }
+        else{
+            System.out.println("Array is Full ");
+        }
+        
+      
+      return true;  
+    }
+            
+    public boolean removeIndex(int index){
+        
+      if(currentposition>=0 && index>=0 && index<=currentposition)
+      {
+          for(int i=index;i<currentposition;i++){
+              data[i]=data[i+1];
+          }
+          currentposition--;
+      }
+        else{
+            System.out.println("Array is Full ");
+        }
+    
+      return true;  
+    }
+    
+    public boolean viewFirst(){
+        
+        if(currentposition>=0){
+            System.out.println("First Value is : "+ data[0]);
+        }
+        else {
+            System.out.println("Array  is Empty ");
+        }
+     
+       return true; 
+    }
+    public boolean viewLast(){
+        
+        if(currentposition>=0){
+            System.out.println("First Value is : "+ data[currentposition]);
+        }
+        else {
+            System.out.println("Array  is Empty ");
+        }
+     
+       return true; 
+    }
+    public boolean viewIndex(int index){
+        
+        if(currentposition>=0){
+            System.out.println("First Value is : "+ data[index]);
+        }
+        else {
+            System.out.println("Array  is Empty ");
+        }
+     
+       return true; 
+    }
+    
+    public boolean updateFirst(int value ){
+        if(currentposition>=0)
+        {
+            data[0]=value;
+        }
+        else{
+            System.out.println("Array is Empty ");
+        }
+        return true;
+    }
+    public boolean updateLast(int value ){
+        if(currentposition>=0)
+        {
+            data[currentposition]=value;
+        }
+        else{
+            System.out.println("Array is Empty ");
+        }
+        return true;
+    }
+   public boolean updateIndex(int index ,int value ){
+        if(currentposition>=0)
+        {
+            data[index]=value;
+        }
+        else{
+            System.out.println("Array is Empty ");
+        }
+        return true;
+    }
+     
+   public boolean getMinimum(){
+       if(currentposition<data.length){
+           int min=data[0];
+           for(int i=0;i<data.length;i++){
+               if(data[i]<min){
+                   min=data[i];
+               }
+           }
+           System.out.println("Minimum is "+min);
+       }
+       else {
+           System.out.println("Array is Empty ");
+                   
+       }
+     return true;
+   }
+      
+      public boolean getMaximum(){
+       if(currentposition<data.length){
+           int max=data[0];
+           for(int i=0;i<data.length;i++){
+               if(data[i]>max){
+                   max=data[i];
+               }
+           }
+           System.out.println("Minimum is "+max);
+       }
+       else {
+           System.out.println("Array is Empty ");
+                   
+       }
+     return true;
+   }
+      
+      public boolean linearSearch(int value ){
+          
+          if(currentposition>=0){
+              int flag=0;
+              for(int i=0;i<data.length;i++){
+                  if(data[i]==value){
+                      flag=1;
+                      break;
+                  }
+              }
+              if(flag==1){
+                  
+                  System.out.println("Element found ");
+              
+              }
+              else{
+                  System.out.println("Not Fouond ");
+              }
+          }
+          else{
+              System.out.println("Array is Empty ");
+          }
+        
+          return true;
+      }
+      
+  public boolean ascendingShorting(){
+      
+      if(currentposition>=0){
+          System.out.println("Ascending Shorting ");
+          int temp;
+          for(int i=0;i<=currentposition;i++){
+              
+              for(int j=i+1;j<currentposition;i++){
+                  
+                  if(data[i]<data[j]){
+                      temp=data[i];
+                      data[i]=data[j];
+                      data[i]=temp;
+                      
+                  }
+              }
+              System.out.println(data[i]);
+              
+          }
+          
+          
+          
+          
+      }
+      
+      
+      
+      return true;
+  }    
+    
+   public boolean decendingShorting(){
+       
+       
+       if(currentposition>=0){
+           
+           System.out.println("Decending shorting ");
+           for(int i=0;i<=currentposition;i++){
+               for(int j=i+1;j<=currentposition;i++){
+                   if(data[i]<data[j]){
+                       int temp =data[i];
+                       data[i]=data[j];
+                       data[i]=temp;
+                   }
+               }
+               System.out.println(data[i]);
+           }
+       }
+       return true;
+   } 
+    
+    
+    public boolean binarySearch(int value){
+        if(currentposition>=0){
+            System.out.println("Binary Search :");
+            int temp;
+            for(int i=0;i<=currentposition;i++){
+                for(int j=i+1;j<=currentposition;j++){
+                    if(data[i]>data[j]){
+                        temp=data[j];
+                        data[i]=data[j];
+                        data[i]=temp;
+                    }
+                }
+            }
+            
+            int f=0;
+            int low=0;
+            int high=currentposition;
+            int medium=(low+currentposition)/2;
+            
+            
+                if(data[medium]==value){
+                    System.out.println("Element Found ");
+                    
+                    
+                  }
+                else if(value>data[medium]){
+                    for(int j=medium+1 ;j<=currentposition;j++)
+                    {
+                        if(data[j]==value){
+                            f=1;
+                            break;
+                        }
+                    }
+                }
+                else if(value< data[medium]){
+                    for(int k=medium-1;k>=0;k--){
+                        if(data[k]==value){
+                            f=1;
+                            break;
+                        }
+                    }
+                }
+                
+                
+            
+
+            if(f==1){
+                System.out.println("Value is Found ");
+            }
+            else{
+                System.out.println("Not Found ");
+            }
+         
+            
+        }
+        return true;
+    }
+    
+    
+    public void getPrint(){
+        
+        System.out.println("Your Entered Values are : ");
+        
+        for(int i=0;i<=currentposition;i++){
+            System.out.println(data[i]);
+        }
+    }
+}
+
+    
